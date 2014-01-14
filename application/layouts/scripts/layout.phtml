@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Set the viewport width to device width for mobile -->
+    <meta data-element="meta-title" name="title" content=""/>
+    <meta data-element="meta-description" name="description" content=""/>
+    <title></title>
+    <!-- Styling -->
+    <link rel="stylesheet" href="<?php echo $this->baseUrl('/css/bootstrap.css'); ?>" type="text/css">
+
+</head>
+<body>
+
+<div class="container hero-unit">
+    <nav class="navbar offset9">
+            <ul class="nav navbar-nav">
+                <?php
+                if(!Application_Model_Users::isLoggedIn())
+                { ?>
+                    <li><a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'login')); ?>">Log In</a></li>
+                    <li><a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'sign-up')); ?>">Sign Up</a></li>
+                <?php }
+                else
+                { ?>
+                    <li><a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout')); ?>">Log Out</a></li>
+                <?php }
+               ?>
+            </ul>
+    </nav>
+    <br />
+    <?php echo $this->layout()->content; ?>
+</div>
+
+</body>
+</html>
