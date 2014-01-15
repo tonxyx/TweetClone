@@ -4,5 +4,10 @@
 
 <?php
     echo $this->signUpForm;
+
+    if($this->errorMessage)
+    {
+        echo $this->errorMessage;
+    }
 ?>
 </div>

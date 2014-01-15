@@ -54,7 +54,7 @@ class AuthController extends Zend_Controller_Action
         if($this->getRequest()->isPost())
             if ($signUpForm->isValid($signUpData)) {
                 if($users->checkUnique($signUpData['email'])){
-                    echo "<p class='span7 offset3'>Email address already taken. Please choose another one.</p>";
+                    $this->view->errorMessage = "<p>Email address already taken. Please choose another one.</p>";
                     return;
                 }
 
