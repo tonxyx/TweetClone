@@ -12,14 +12,22 @@ class Application_Model_Posts
 
         $auth = Zend_Auth::getInstance();
 
-        if ($auth->hasIdentity()) {
-            $this->info = $auth->getIdentity();
+        try {
+            if (!$auth->hasIdentity()) {
+                throw new Exception("You are not logged in!");
+                $this->redirect('/auth/login');
+            }
+            else
+            {
+                $info = $auth->getIdentity();
+                $post->userId = $info->id;
+            }
+        }
+        catch (Zend_Exception $e) {
+            throw $e;
         }
 
-        $post->userId = $this->info->id;
-
         return $post->save();
-
     }
 
     public function getPosts()
